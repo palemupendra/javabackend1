@@ -9,13 +9,13 @@ pipeline {
     stages {
         stage('Build with Maven') {
             steps {
-                bat 'maven clean install'
+                bat 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'maven test'
+                bat 'mvn test'
             }
         }
 
