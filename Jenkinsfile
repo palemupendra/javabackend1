@@ -23,6 +23,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh "${DOCKER_CMD} build -t ${IMAGE_NAME} ."
+                sh "docker-compose up --build"
+
                 sh "docker images"
                 sh "docker run --network host -d ${IMAGE_NAME}"
             }
