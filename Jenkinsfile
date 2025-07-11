@@ -9,13 +9,13 @@ pipeline {
     stages {
         stage('Build with Maven') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                bat 'maven clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                bat 'maven test'
             }
         }
 
