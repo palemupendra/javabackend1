@@ -1,24 +1,22 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'maven'  // This matches the name from Jenkins' Maven config
-    }
-
     environment {
         IMAGE_NAME = 'customer-api'
+        MAVEN_CMD = '/usr/bin/mvn'
+        DOCKER_CMD = '/usr/bin/docker'
     }
 
     stages {
         stage('Build with Maven') {
             steps {
-                bat 'mvn clean install'
+                sh "${MAVEN_CMD} clean install -DskipTests"
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh "${MAVEN_CMD} test"
             }
         }
 
@@ -32,7 +30,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                bat "docker run -d -p 8089:8089 ${IMAGE_NAME}:latest"
+                sh "${DOCKER_CMD} run -d -p 8089:8089 ${IMAGE_NAME}:latest"
             }
         }
     }
