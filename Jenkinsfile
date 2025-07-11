@@ -3,20 +3,19 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'customer-api'
-        //DOCKER_REGISTRY = 'your-docker-repo-name' // replace with your Docker Hub or ECR repo
+        //DOCKER_REGISTRY = '' // optional: set this if pushing to DockerHub/ECR
     }
 
     stages {
-
         stage('Build with Maven') {
             steps {
-                sh 'maven clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'maven test'
+                bat 'mvn test'
             }
         }
 
@@ -28,34 +27,19 @@ pipeline {
             }
         }
 
-        // stage('Push Docker Image') {
-        //     when {
-        //         expression { return env.DOCKER_REGISTRY != '' }
-        //     }
-        //     steps {
-        //         withDockerRegistry([credentialsId: 'docker-credentials-id', url: '']) {
-        //             sh "docker tag ${IMAGE_NAME}:latest ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest"
-        //             sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest"
-        //         }
-        //     }
-        // }
-
-        stage('Deploy') {
+        stage('Run Docker Container') {
             steps {
-                echo 'Deploying application...'
-                // Example for Docker run locally
-                sh "docker run -d -p 8089:8089 ${IMAGE_NAME}:latest"
+                bat "docker run -d -p 8089:8089 ${IMAGE_NAME}:latest"
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline executed successfully!'
+            echo '✅ Pipeline completed successfully.'
         }
         failure {
-            echo 'Pipeline failed!'
+            echo '❌ Pipeline failed.'
         }
     }
-
 }
