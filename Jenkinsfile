@@ -1,9 +1,12 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'maven'  // This matches the name from Jenkins' Maven config
+    }
+
     environment {
         IMAGE_NAME = 'customer-api'
-        //DOCKER_REGISTRY = '' // optional: set this if pushing to DockerHub/ECR
     }
 
     stages {
