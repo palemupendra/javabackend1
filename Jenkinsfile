@@ -23,7 +23,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh "${DOCKER_CMD} build -t ${IMAGE_NAME} ."
-                sh "HOME=/tmp docker-compose up --build"
+                //sh "HOME=/tmp docker-compose up --build"
+                sh"docker-compose -f ./docker-compose.yml up --build"
                 sh "docker images"
                 sh "docker run --network host -d ${IMAGE_NAME}"
             }
