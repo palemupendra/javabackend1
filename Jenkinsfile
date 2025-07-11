@@ -6,23 +6,17 @@ pipeline {
         //DOCKER_REGISTRY = 'your-docker-repo-name' // replace with your Docker Hub or ECR repo
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                /* groovylint-disable-next-line LineLength */
-                git url: 'https://github.com/palemupendra/javabackend1.git', branch: 'main'  
-            }
-        }
+    stages {}
 
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'maven clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'maven test'
             }
         }
 
