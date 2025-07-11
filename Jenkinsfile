@@ -24,6 +24,7 @@ pipeline {
             steps {
                 sh "${DOCKER_CMD} build -t ${IMAGE_NAME} ."
                 sh "docker images"
+                sh "docker run --network host -d ${IMAGE_NAME}"
             }
         }
 
