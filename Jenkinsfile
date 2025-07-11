@@ -6,7 +6,7 @@ pipeline {
         //DOCKER_REGISTRY = 'your-docker-repo-name' // replace with your Docker Hub or ECR repo
     }
 
-    stages {}
+    stages {
 
         stage('Build with Maven') {
             steps {
