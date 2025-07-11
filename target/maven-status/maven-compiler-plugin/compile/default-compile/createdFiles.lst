@@ -1,0 +1,7 @@
+com\crmapp\entity\Customer.class
+com\crmapp\controller\LeadController.class
+com\crmapp\CrmAppApplication.class
+com\crmapp\entity\Lead.class
+com\crmapp\controller\CustomerController.class
+com\crmapp\repository\LeadRepository.class
+com\crmapp\repository\CustomerRepository.class
