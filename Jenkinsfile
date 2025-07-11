@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'customer-api'
+        IMAGE_NAME = 'cart-api'
         MAVEN_CMD = '/usr/bin/mvn'
         DOCKER_CMD = '/usr/bin/docker'
     }
@@ -22,15 +22,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    dockerImage = docker.build("${IMAGE_NAME}:latest")
-                }
+                sh "${DOCKER_CMD} build -t ${IMAGE_NAME} ."
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh "${DOCKER_CMD} run -d -p 8089:8089 ${IMAGE_NAME}:latest"
+                sh "${DOCKER_CMD} run -d -p 8089:8089 ${IMAGE_NAME}"
             }
         }
     }
