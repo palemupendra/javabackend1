@@ -34,7 +34,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 sh "${DOCKER_CMD} run -d -p 8089:8089 java-pipeline_app"
-                sh "${DOCKER_CMD} run -d -p 5432:5432 postgres"
+                //sh "${DOCKER_CMD} run -d -p 5432:5432 postgres"
             }
         }
     }
