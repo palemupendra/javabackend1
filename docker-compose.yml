@@ -44,7 +44,7 @@ services:
       dockerfile: Dockerfile
     container_name: cart-api
     ports:
-      - "8089:8089"
+      - "9090:8089"
     depends_on:
       - postgres
     environment:
