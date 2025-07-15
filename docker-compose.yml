@@ -1,8 +1,48 @@
+# version: '3.8'
+
+# services:
+#   app:
+#     build: 
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "8089:8089"
+#     depends_on:
+#       - postgres
+#     environment:
+#       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/crm_db
+#       SPRING_DATASOURCE_USERNAME: postgres
+#       SPRING_DATASOURCE_PASSWORD: asdf@12ASDF
+#     networks:
+#       - app-network
+
+#   postgres:
+#     image: postgres:15
+#     container_name: postgres
+#     restart: always
+#     environment:
+#       POSTGRES_DB: crm_db
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: asdf@12ASDF
+#     ports:
+#       - "5432:5432"
+#     networks:
+#       - app-network
+
+# networks:
+#   app-network:
+
+
+
+#============
 version: '3.8'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cart-api
     ports:
       - "8089:8089"
     depends_on:
@@ -18,14 +58,20 @@ services:
     image: postgres:15
     container_name: postgres
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: crm_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: asdf@12ASDF
-    ports:
-      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     networks:
       - app-network
 
 networks:
   app-network:
+
+volumes:
+  pgdata:
+
