@@ -27,6 +27,7 @@ pipeline {
                 //sh"docker-compose -f ./docker-compose.yml up --build"
                 sh"docker-compose up -d --build"
                 sh "docker images"
+                sh "docker rmi images"
                 //sh "docker run --network host -d ${IMAGE_NAME}"
             }
         }
