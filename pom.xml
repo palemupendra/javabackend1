@@ -9,7 +9,7 @@
     <artifactId>crm-backend</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-
+<!-- hello -->
     <name>CRM App Backend</name>
     <description>Spring Boot CRM backend using PostgreSQL</description>
 
