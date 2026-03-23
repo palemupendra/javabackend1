@@ -53,8 +53,8 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 # Security best practice (run as non-root)
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
+# RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# USER appuser
 
 # Copy jar from builder
 COPY --from=builder /app/target/*.jar app.jar
