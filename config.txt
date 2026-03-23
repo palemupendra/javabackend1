@@ -1,5 +1,11 @@
 Database Configuration
 ======================
+# Development Environment
+hostname: localhost
+port: 5432
+username: admin
+
+# Production Environment
 hostname: prod-db.example.com
 port: 3306
 username: produser
